@@ -1,4 +1,4 @@
-
+// Arquivo de configuração para iniciar o projeto no Heroko
 import express from 'express'
 import serveStatic from 'serve-static'
 import history from 'connect-history-api-fallback'

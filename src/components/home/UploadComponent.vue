@@ -1,27 +1,31 @@
 <template>
   <div>
-    <q-uploader
-        style="max-width: 300px"
-        url="http://localhost:4444/upload"
-        label="Restricted to images"
-        multiple
+    <q-input
+        @input="val => { file = val[0] }"
+        filled
         accept=".jpg, image/*"
-        @rejected="onRejected"
+        type="file"
       />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
+import vision from '@google-cloud/vision'
 @Component
 export default class UploadComponent extends Vue {
-  onRejected (rejectedEntries:Array<any>) {
-    // Notify plugin needs to be installed
-    // https://quasar.dev/quasar-plugins/notify#Installation
-    this.$q.notify({
-      type: 'negative',
-      message: `${rejectedEntries.length} file(s) did not pass validation constraints`
-    })
+  private client = new vision.ImageAnnotatorClient()  
+  private file : any = null
+
+  @Watch('file')
+  fileChange (newValue:any, oldValue:any) {
+    console.log(newValue)
+    // this.client.labelDetection(newValue).then(result => {
+    //   // @ts-ignore
+    //   const labels = result.labelAnnotations
+    //   console.log('Labels:')
+    //   labels.forEach( (label:any) => console.log(label.description))
+    // })  
   }
 }
 </script>
