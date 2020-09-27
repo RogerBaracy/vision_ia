@@ -47,17 +47,15 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/menu/EssentialLink.vue'
-
 const linksData = [
   {
     title: 'Github',
-    caption: 'github.com/quasarframework',
+    caption: 'github.com/RogerBaracy/vision_ia',
     icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: 'https://github.com/RogerBaracy/vision_ia'
   }
 ]
-
+import EssentialLink from 'components/menu/EssentialLink.vue'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component({

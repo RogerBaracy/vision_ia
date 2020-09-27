@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 <template>
   <q-item clickable tag="a" v-on:click="redirect()">
     <q-item-section v-if="icon" avatar>
