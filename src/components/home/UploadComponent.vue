@@ -9,7 +9,7 @@
     />
     <img id='output' height="400px" width="auto">
     <div>
-      {{info}}
+      {{ info }}
     </div>
   </div>
 </template>
