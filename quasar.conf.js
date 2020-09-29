@@ -25,7 +25,6 @@ module.exports = configure(function (ctx) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
-
       'i18n',
       'axios'
     ],
@@ -52,7 +51,13 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
-
+      env: ctx.dev
+        ? { // so on dev we'll have
+          GOOGLE_API_KEY: 'AIzaSyCu1DNvWICipvk4z3e-yu1gUx--XpXegqQ' 
+        }
+        : { // and on build (production):
+          GOOGLE_API_KEY: 'AIzaSyCu1DNvWICipvk4z3e-yu1gUx--XpXegqQ'    
+        },
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
