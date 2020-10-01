@@ -49,10 +49,25 @@
 <script lang="ts">
 const linksData = [
   {
-    title: 'Github',
+    title: 'Projeto usando Api Rest',
     caption: 'github.com/RogerBaracy/vision_ia',
     icon: 'code',
-    link: 'https://github.com/RogerBaracy/vision_ia'
+    link: 'https://github.com/RogerBaracy/vision_ia',
+    intern: false
+  },
+  {
+    title: 'Exemplo usando Api Rest',
+    caption: 'vision-ia.surge.sh',
+    icon: 'code',
+    link: 'http://vision-ia.surge.sh',
+    intern: false
+  },
+  {
+    title: 'Projeto usando library',
+    caption: 'https://github.com/igorcemim/google-cloud-vision-api-exemplos',
+    icon: 'code',
+    link: 'https://github.com/igorcemim/google-cloud-vision-api-exemplos',
+    intern: false
   }
 ]
 import EssentialLink from 'components/menu/EssentialLink.vue'
