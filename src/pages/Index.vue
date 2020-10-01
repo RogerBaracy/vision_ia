@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row">
+  <q-page>
    <upload-component/>
   </q-page>
 </template>
