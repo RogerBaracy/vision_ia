@@ -1,36 +1,42 @@
 <template>
   <div class="fixed-center">
-    <q-input
-      @input="
-        (val) => {
-          file = val[0];
-        }
-      "
-      filled
-      accept=".jpg, .png"
-      type="file"
-      v-on:change="fileChange"
-    />
-    <q-card class="my-card">
-      <q-card-section horizontal>
-        <img id="output" height="400px" width="auto" />
-        <q-card-section>
-          <TabsInfo v-bind:objects="objects" v-bind:labels="labels"/>
-        </q-card-section>
-      </q-card-section>
-    </q-card>
-
-    <div></div>
+    <div class="row">
+      <div class="col-12">
+        <q-input
+          @input="
+            (val) => {
+              file = val[0];
+            }
+          "
+          filled
+          accept=".jpg, .png"
+          type="file"
+          v-on:change="fileChange"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <q-card class="my-card">
+          <q-card-section horizontal>
+            <img id="output" height="400px" width="auto" />
+            <q-card-section>
+              <TabsInfo v-bind:objects="objects" v-bind:labels="labels" />
+            </q-card-section>
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
-import TabsInfo from './TabsInfo.vue'
+import TabsInfo from "./TabsInfo.vue";
 @Component({
-  components:{
-    TabsInfo
-  }
+  components: {
+    TabsInfo,
+  },
 })
 export default class UploadComponent extends Vue {
   private file: any = null;
@@ -40,7 +46,7 @@ export default class UploadComponent extends Vue {
   @Watch("file")
   fileChange(newValue: any, oldValue: any) {
     this.labels = [];
-    this.objects = []
+    this.objects = [];
     this.$q.loading.show({
       spinnerColor: "primary",
       spinnerSize: 100,
