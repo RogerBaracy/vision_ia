@@ -10,15 +10,12 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-
         <q-toolbar-title>
-          Quasar App
+          Reconhecimento de imagens
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Google Vision-IA</div>
       </q-toolbar>
     </q-header>
-
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -30,7 +27,7 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
