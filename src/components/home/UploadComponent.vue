@@ -2,26 +2,33 @@
   <div class="fixed-center">
     <div class="row">
       <div class="col-12">
+        <label for="input"> Selecione uma imagem (.png ou .jpg) </label>
         <q-input
-          @input="
+          id="input"
+          v-on:input="
             (val) => {
               file = val[0];
             }
           "
           filled
+          outlined
           accept=".jpg, .png"
           type="file"
           v-on:change="fileChange"
         />
       </div>
     </div>
-    <div class="row">
+    <div v-if="file != null" class="row">
       <div class="col-12">
         <q-card class="my-card">
           <q-card-section horizontal>
-            <img id="output" height="400px" width="auto" />
+            <img id="output" style="max-height:400px; max-width:500px" />
             <q-card-section>
-              <TabsInfo v-bind:objects="objects" v-bind:labels="labels" />
+              <TabsInfo
+                v-bind:objects="objects"
+                v-bind:labels="labels"
+                v-bind:colors="colors"
+              />
             </q-card-section>
           </q-card-section>
         </q-card>
@@ -42,11 +49,13 @@ export default class UploadComponent extends Vue {
   private file: any = null;
   private labels: Array<any> = [];
   private objects: Array<any> = [];
+  private colors: Array<any> = [];
 
   @Watch("file")
   fileChange(newValue: any, oldValue: any) {
     this.labels = [];
     this.objects = [];
+    this.colors = [];
     this.$q.loading.show({
       spinnerColor: "primary",
       spinnerSize: 100,
@@ -108,6 +117,8 @@ export default class UploadComponent extends Vue {
         .then((response) => {
           this.labels = response.data.responses[0].labelAnnotations;
           this.objects = response.data.responses[0].localizedObjectAnnotations;
+          this.colors = response.data.responses[0].imagePropertiesAnnotation.dominantColors.colors;
+          this.colors.sort((a, b) => { return a.score < b.score? 1 : a.score > b.score? -1: 0})
         })
         .catch((error) => {
           console.error(error);
